@@ -1,6 +1,11 @@
 import { radioPlayerInit } from "./radioPlayer.js";
 import { videoPlayerInit } from "./videoPlayer.js";
 import { musicPlayerInit } from "./musicPlayer.js";
+import {
+  switchMusicPlayer,
+  switchVideoPlayer,
+  switchRadioPlayer,
+} from "./supportScript.js";
 
 const playerBtn = document.querySelectorAll(".player-btn");
 const playerBlock = document.querySelectorAll(".player-block");
@@ -21,6 +26,10 @@ playerBtn.forEach((btn, i) => {
     deactivationPlayer();
     btn.classList.add("active");
     playerBlock[i].classList.add("active");
+
+    switchMusicPlayer();
+    switchVideoPlayer();
+    switchRadioPlayer();
   });
 });
 

@@ -1,22 +1,25 @@
+export const audioRadio = new Audio();
+export const radio = document.querySelector(".radio");
+export const radioStop = document.querySelector(".radio-stop");
 export const radioPlayerInit = () => {
-  const radio = document.querySelector(".radio");
+  //const radio = document.querySelector(".radio");
   const radioCoverImg = document.querySelector(".radio-cover__img");
   const radioHeaderBig = document.querySelector(".radio-header__big");
   const radioNavigation = document.querySelector(".radio-navigation");
   const radioItem = document.querySelectorAll(".radio-item");
-  const radioStop = document.querySelector(".radio-stop");
+  // const radioStop = document.querySelector(".radio-stop");
   const radioVolume = document.querySelector(".radio-volume");
   const radioIcon = document.querySelector(".radio-icon");
 
-  const audio = new Audio();
-  audio.type = "audio/aac";
+  //const audio = new Audio();
+  audioRadio.type = "audio/aac";
 
   radioStop.disabled = true;
 
   radioVolume.value = 50;
 
   const changeIconPlay = () => {
-    if (audio.paused) {
+    if (audioRadio.paused) {
       radio.classList.remove("play");
       radioStop.classList.add("fa-play");
       radioStop.classList.remove("fa-stop");
@@ -45,16 +48,16 @@ export const radioPlayerInit = () => {
     radioCoverImg.src = urlImg;
 
     radioStop.disabled = false;
-    audio.src = target.dataset.radioStantion;
-    audio.play();
+    audioRadio.src = target.dataset.radioStantion;
+    audioRadio.play();
     changeIconPlay();
   });
 
   radioStop.addEventListener("click", () => {
-    if (audio.paused) {
-      audio.play();
+    if (audioRadio.paused) {
+      audioRadio.play();
     } else {
-      audio.pause();
+      audioRadio.pause();
     }
     changeIconPlay();
   });
@@ -62,7 +65,7 @@ export const radioPlayerInit = () => {
   radioVolume.addEventListener("input", () => {
     audio.volume = radioVolume.value / 100;
 
-    if (audio.volume === 0) {
+    if (audioRadio.volume === 0) {
       radioIcon.classList.remove("fa-volume-down");
       radioIcon.classList.add("fa-volume-off");
     } else {
@@ -71,5 +74,5 @@ export const radioPlayerInit = () => {
     }
   });
 
-  radioVolume.volume = audio.value * 100;
+  radioVolume.volume = audioRadio.value * 100;
 };
